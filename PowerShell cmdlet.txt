@@ -1,0 +1,4 @@
+New-NetFirewallRule -DisplayName "test Inbound Port 80 TCP" -Direction Inbound -LocalPort Any -
+Protocol TCP -Action Allow -Program "$env:JAVA_HOME\bin\java.exe"
+New-NetFirewallRule -DisplayName "test Inbound Port 80 UDP" -Direction Inbound -LocalPort Any -
+Protocol UDP -Action Allow -Program "$env:JAVA_HOME\bin\java.exe"
