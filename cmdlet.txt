@@ -1,0 +1,28 @@
+Microsoft.VisualStudio.Product.BuildTools
+Get-Process -Name win*
+#how to retrieve latest vision of OpenSSH for windows
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$url = 'https://github.com/PowerShell/Win32-OpenSSH/releases/latest/'
+$request = [System.Net.WebRequest]::Create($url)
+$request.AllowAutoRedirect=$false
+$response=$request.GetResponse()
+$([String]$response.GetResponseHeader("Location")).Replace('tag','download') + '/OpenSSH-Win64.zip'  
+$([String]$response.GetResponseHeader("Location")).Replace('tag','download') + '/OpenSSH-Win32.zip'
+#id
+$mycredentials = Get-Credential
+$secpasswd = ConvertTo-SecureString "PlainTextPassword" -AsPlainText -Force
+$mycreds = New-Object System.Management.Automation.PSCredential ("username", $secpasswd)
+#download
+$client = new-object System.Net.WebClient
+$client.DownloadFile(“http://thewindowsclub.thewindowsclub.netdna-cdn.com/wp-content/upload/2016/Windows-Explorer-Process-Task-Manager-600x405.png”,“C:\Users\Digdarshan\Pictures\TWC\Task-Manager.png”)
+#
+Microsoft.VisualStudio.Workload.NetWeb
+New-AzVm `
+    -ResourceGroupName "first_try" `
+    -Name "testVM" `
+    -Location "Korea South" `
+    -VirtualNetworkName "testVnet" `
+    -SubnetName "testSubnet" `
+    -SecurityGroupName "test-nsg" `
+    -PublicIpAddressName "testPublicIpAddress" `
+    -OpenPorts 80,3389
